@@ -1,0 +1,167 @@
+.btn{
+    margin-left: 10px;
+    background-color: darkgoldenrod;
+}
+
+.container-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+}
+.button_login{
+    margin: 12px;
+}
+.button_registr{
+    margin: 4px;
+}
+.modal-head-title{
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+width: 100%;
+}
+
+.modal-header .close {
+    padding: 8px;
+}
+/* Стили для панелі аккаунтів */
+.nav-title{
+    padding: 0.5rem 1rem;
+    color: rgba(255,255,255,.5);
+}
+.nav-name{
+    display: flex;
+    padding: 0.5rem 1rem;
+    color: #e47c14; 
+}
+.btn_exit{
+    margin-left: 10px;
+    background-color: rgb(184, 2, 2);
+    color: #fff;
+}
+.btn_exit:hover{
+    margin-left: 10px;
+    background-color: rgb(25, 0, 255);
+    color: #fff;
+}
+.container-exit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container-exit-button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+/* Стиль на червоний фон */
+.red{
+     background-color: #FA270D;
+     color: #FBEEE2;
+     border-radius: 8px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+/* Прибирання стрілок на input number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* Стилі на адмін панель */
+.vertical-menu {
+    width: 300px;
+    min-height:42vw;
+    background-color: #343A40; /* Grey background color */
+    display: block;
+    float:left;
+}
+
+.vertical-menu a {
+    color: rgb(255, 255, 255); /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ff8811; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #ff8811; /* Add a green color to the "active/current" link */
+    color: white;
+}
+.spisok-table{
+    width: 2180px;
+    min-height:42vw;
+    height: 100%;
+    background-color: #b4daff; /* Grey background color */
+}
+
+th, td{
+    font-size: 15px;
+    padding: 10px;
+}
+th{
+    background: #555;
+    color:#fff;
+}
+td{
+    background: #eee;
+}
+/* Форма адмін панелей */
+.admin-form{
+    padding: 40px;
+}
+.show_auto{
+    margin-right: 24px;
+
+}
+
+
+/* user panel */
+.user_panel_container{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 24px;
+}
+.user_panel_first_container{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+}
+.sub_title_text{
+    font-weight:bold;
+}
+.user_button{
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.form-input{
+    margin-bottom: 12px;
+}
+
+/* index */
+select{
+    margin-bottom: 8px;
+}

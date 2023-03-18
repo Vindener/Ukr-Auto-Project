@@ -1,0 +1,135 @@
+/* Базовые стили формы */
+.form-contact {
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Стили полей ввода */
+.textbox {
+  width: 50%;
+  padding: 12px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+/* Стили текстового поля */
+.message {
+  width: 50%;
+  padding: 12px;
+  margin: 5px 0 22px 0;
+  font-size: 20px;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  font-size: 18px;
+}
+/* Базовые стили кнопки */
+.button {
+  height: 50px;
+  width: 30%;
+  border-radius: 12px;
+  border: 2px solid #ff5c00;
+  box-sizing: border-box;
+  padding: 10px;
+  background: white;
+  color: black;
+  font-family: "arial";
+  font-weight: 400;
+  font-size: 16pt;
+  transition: background 0.4s;
+  cursor: pointer;
+}
+/* Изменение фона кнопки при наведении */
+.button:hover {
+  background: #ff5c00;
+  color: white;
+}
+
+.form-container {
+  margin: 40px;
+}
+.form-container_auto {
+  margin-left: 8%;
+  margin-right: 8%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.form-auto {
+  display: flex;
+  flex-direction: column;
+}
+
+.textbox-register {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+.select-auto{
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0 22px 0;
+  background: #f1f1f1;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+.message-auto {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0 22px 0;
+  font-size: 20px;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  font-size: 18px;
+}
+.registerbtn{
+  width: 25%;
+  align-self: center;
+  border-radius: 12px;
+  border: 2px solid #ff5c00;
+  box-sizing: border-box;
+  padding: 10px;
+  background: white;
+  color: black;
+  font-family: "arial";
+  font-weight: 400;
+  font-size: 16pt;
+  transition: background 0.4s;
+  cursor: pointer;
+}
+.registerbtn:hover {
+  background: #ff5c00;
+  color: white;
+}
+.title{
+  text-align: center;
+}
+
+
+.red{
+     background-color: #DB5040;
+     color: #fff;
+     padding: 12px;
+     border-radius: 24px;
+}
+
+.img_about{
+  width: 65%;
+  margin-bottom: 8px;
+}
+.img_small{
+  width: 30%;
+  margin-bottom: 8px;
+}
