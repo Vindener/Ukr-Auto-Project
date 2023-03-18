@@ -3,6 +3,7 @@ session_start();
 include("./include/db_connect.php"); //Підключення до бази даних
 include("./include/header.php"); //Підключення хедера
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
