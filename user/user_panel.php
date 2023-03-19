@@ -136,25 +136,29 @@ if ($_SESSION['auth_user'] == "") {
         </div>
         <p class="sub_title_text">Ваші оголошення</p>
         <div>
+            <?php if ($row1['id_spisok'] == null) :    ?>
+                <h3 class="title">У вас немає створених оголошень</h3>
+                <h4 class="title">Ви можете <a href="../add-auto.php">створити оголошення</a> </h4>
+            <?php endif; ?>
+            <?php if ($row1['id_spisok'] != null) :    ?>
+                <table>
+                    <tr>
+                        <th>Зображення</th>
+                        <th>Назва оголошення</th>
+                        <th>Дата публікації </th>
+                        <th>Ціна</th>
+                        <th>&#9998;</th>
+                        <th>&#10017;</th>
 
-            <table>
-                <tr>
-                    <th>Зображення</th>
-                    <th>Назва оголошення</th>
-                    <th>Дата публікації </th>
-                    <th>Ціна</th>
-                    <th>&#9998;</th>
-                    <th>&#10017;</th>
-
-                </tr>
-                <?php
-                do {
-                    if ($row1["img"] == '') {
-                        $img_path = '..\img\no_image.jpg';
-                    } else {
-                        $img_path = '..\img\auto\\' . $row1['img'];
-                    }
-                    echo '
+                    </tr>
+                    <?php
+                    do {
+                        if ($row1["img"] == '') {
+                            $img_path = '..\img\no_image.jpg';
+                        } else {
+                            $img_path = '..\img\auto\\' . $row1['img'];
+                        }
+                        echo '
 			  <tr>
                 <td><a href="..\auto.php?id=' . $row1['id_spisok'] . '"><img src="' . $img_path . '" width="120px" heigth="120px" ></a></td>
                 <td><a href="..\auto.php?id=' . $row1['id_spisok'] . '">' . $row1['mcname'] . " " . $row1['modcname'] . " " . $row1['name_car_modyf'] . '</a></td>
@@ -165,9 +169,10 @@ if ($_SESSION['auth_user'] == "") {
         
       </tr>
       ';
-                } while ($row1 = mysqli_fetch_assoc($sel1));
-                ?>
-            </table>
+                    } while ($row1 = mysqli_fetch_assoc($sel1));
+                    ?>
+                </table>
+            <?php endif; ?>
         </div>
     </div>
 
