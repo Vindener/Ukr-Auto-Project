@@ -52,5 +52,17 @@ mysqli_query($connect, "UPDATE spisok SET
             tsina='" . $tsina  . "',
             opus='" . $opus  . "'
             WHERE spisok.id_spisok  = '" . $id . "' ");
+//Загрузка основого зображення
+$id_user_img = mysqli_insert_id($connect);
+if (isset($_FILES['myFile'])) {
+  $myFile = $_FILES['myFile'];
+  include("update_image.php");
+}
+
+//Загрузка групи файлів
+if (isset($_FILES['my_files'])) {
+  $myFiles = $_FILES['my_files'];
+  include("update_gallery.php");
+}
   header('Location: ../user_panel.php');
 ?>

@@ -6,7 +6,7 @@ if ($_SESSION['auth_user'] == "") {
     header("Location:../index.php");
 } else {
     include("../include/db_connect.php"); //Підключення до бази даних
-   
+
 
     $id_spisok = $_GET['id'];
 
@@ -36,15 +36,15 @@ if ($_SESSION['auth_user'] == "") {
     LEFT JOIN color ON color.id_color = spisok.id_color
     LEFT JOIN stan_car ON stan_car.id_stan_car = spisok.id_stan_car
     WHERE `id_spisok` = '$id_spisok'");
-    
+
     $num_rows = mysqli_num_rows($auto); //Визначення кількості рядків у таблиці
     $row = mysqli_fetch_assoc($auto);
-    if($row['id_user']!= $_SESSION['id']){
+    if ($row['id_user'] != $_SESSION['id']) {
         header("Location: user_panel.php");
     }
 
     include("../include/header.php"); //Підключення хедера
-    
+
 
     $dbh = new PDO('mysql:dbname=ukr_auto;host=localhost', 'root', '');
     //Регіони
@@ -480,6 +480,10 @@ if ($_SESSION['auth_user'] == "") {
                         <br>
                     </div>
                     <button type="submit" class="user_button" name="update_auto">Оновити інформацію</button>
+                </form>
+                <form class="form-auto" method="post" action="vendor/delete_photo.php">
+                    <input type="hidden" name="id_spisok" value="<?= $row['id_spisok'] ?>">
+                    <button type="submit" class="user_button" name="delete_photo">Видалити галерею зображень</button>
                 </form>
             </div>
 

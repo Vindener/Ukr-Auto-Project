@@ -446,8 +446,14 @@ if ($_SESSION['auth_user'] != "admin") {
         <button type="submit" class="registerbtn" name="update_auto">Оновити інформацію</button>
       </form>
 
-      <br><br>
-      <form class="" action="../admin_panel.php" method="post">
+      <br>
+      <form class="form-auto" method="post" action="vendor/delete_photo.php">
+        <input type="hidden" name="id_spisok" value="<?= $row['id_spisok'] ?>">
+        <button type="submit" class="user_button" name="delete_photo">Видалити галерею зображень</button>
+      </form>
+      <br>
+      
+      <form class="form-auto" action="../admin_panel.php" method="post">
         <button type="submit">Повернутися на головну</button>
       </form>
     </div>

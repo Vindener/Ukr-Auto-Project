@@ -178,7 +178,7 @@ $row = mysqli_fetch_assoc($sel);
                             $img_path = $row_img["name_photo"];
                             echo '
                     <div class="carousel-item">
-							   <img src="' . $img_path . '"  width="900" height="500"/>
+							   <img src="img/gallery/' . $img_path . '"  width="900" height="500"/>
                     </div>
 									';
                         } while ($row_img = mysqli_fetch_array($query_img));
