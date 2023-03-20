@@ -117,16 +117,24 @@ $row = mysqli_fetch_assoc($sel);
     </nav>
 
     <div class="container_auto">
-        <div class="form-container">
+        <div class="text-container">
             <h2><?= $row['mcname'] . " " . $row['modcname'] . " " . $row['name_car_modyf'] ?></h2>
-            <p style="color:green;"><?= $row['tsina'] ?> $</p>
-            <p><?= $row['probih'] ?> тис. км пробіг</p>
+            <p class="price"><?= $row['tsina'] ?> $</p>
+            <p class="text"><b><?= $row['probih'] ?> тис. км пробіг</b></p>
+            <p class="text"><b><?= $row['vypusk_year'] ?> рік випуску </b></p>
+
+            <div>
+                <h4>Продавець</h4>
+                <p class="text"><?= $row['uname'] ?> <?= $row['ulastname'] ?></p>
+                <p class="text">Телефон, для зв'язку: <a href="tel:<?= $row['uphone'] ?>" class="phone-style"><?= $row['uphone'] ?></a></p>
+
+                <p class="text"><?= $row['nregion'] ?></p>
+                <p class="text"><?= $row['ncity'] ?></p>
+
+            </div>
         </div>
 
-
         <div class="galery_container">
-            <h3></h3>
-
             <div id="demo" class="carousel slide" data-ride="carousel">
 
                 <!-- Indicators -->
@@ -188,35 +196,57 @@ $row = mysqli_fetch_assoc($sel);
                 </a>
             </div>
         </div>
+    </div>
+
+    <div class="container_auto_center">
+        <h3 class="about_text">Дані про авто</h3>
+
+        <div class="auto_about_container">
+
+            <div class="first_block_about">
+                <p><b>Стан - </b><?= $row['scname'] ?></p>
+                <p><b>Участь в ДТП - </b><?php
+                                            if ($row['uchast_v_dtp'] == 1) {
+                                                echo 'Так';
+                                            } else {
+                                                echo 'Ні';
+                                            }
+                                            ?></p>
+
+                <p><b>Пробіг - </b><?= $row['probih'] ?> тис. км пробіг</p>
+                <p><b>Тип кузова - </b><?= $row['tkname'] ?></p>
+                <p><b>Двигун - </b><?= $row['objem_dvuhyna'] ?> л.</p>
+                <p><b>Паливо - </b><?= $row['tpname'] ?></p>
+            </div>
+
+            <div class="first_block_about">
+                <p><b>Тип авто - </b><?= $row['tcname'] ?> </p>
+                <p><b>Колір авто - </b><?= $row['ncolor'] ?> </p>
+                <p><b>Кількість дверей - </b><?= $row['kilkist_dverey'] ?> </p>
+                <p><b>Кількість місць - </b><?= $row['kilkist_mist'] ?> </p>
+
+                <p><b>Коробка передач - </b><?= $row['kpname'] ?> </p>
+                <p><b>Привід - </b><?= $row['npryvid'] ?> </p>
+
+            </div>
+
+
+
+
+        </div>
+        <div class="second_block_about">
+            <p class="bold_text">Опис:</p>
+            <p><?= $row['opus'] ?></p>
+        </div>
+
+
+
 
     </div>
 
 
 
-    <div>
-        <p>Продавець</p>
-        <p><?= $row['uname'] ?> <?= $row['ulastname'] ?></p>
-        <p>Телефон, для зв'язку: <a href="tel:<?= $row['uphone'] ?>" class="phone-style"><?= $row['uphone'] ?></a></p>
 
-        <p><?= $row['nregion'] ?></p>
-        <p><?= $row['ncity'] ?></p>
-
-    </div>
-
-    <div>
-        Дані про авто
-        <p><?= $row['tcname'] ?> * <?= $row['kilkist_dverey'] ?> дверей * <?= $row['kilkist_mist'] ?> місць </p>
-        <p>Стан - <?= $row['scname'] ?></p>
-        <p>Пробіг - <?= $row['probih'] ?> тис. км пробіг</p>
-        <p>Двигун - <?= $row['objem_dvuhyna'] ?> л. * <?= $row['tpname'] ?></p>
-        <p>Коробка передач - <?= $row['kpname'] ?> </p>
-        <p>Привід - <?= $row['npryvid'] ?> </p>
-        <p>Колір - <?= $row['ncolor'] ?> </p>
-        <p>Опис:</p>
-        <p><?= $row['opus'] ?></p>
-
-    </div>
-    </div>
 
     <div class="jumbotron text-center" style="margin-bottom:0">
         <p>Сайт розробили студенти групи П-421</p>

@@ -499,7 +499,7 @@ function out_options11($array, $selected_id = 0)
           include("include/upload_gallery.php");
         }
 
-        header("Refresh:0");
+        echo "<meta http-equiv='refresh' content='0'>";
       }
     }
     ?>
@@ -534,8 +534,8 @@ function out_options11($array, $selected_id = 0)
         <br>
 
         <label for="topic">Рік випуску</label>
-        <input type="date" id="start" name="vypusk_year" value="2023-01-01" min="2000-01-01" max="2023-12-12">
-        </select><br>
+        <input type="number" min="1960" max="2023" id="vypusk_year" name="vypusk_year" placeholder="Введіть рік випуску" class="textbox-register">
+        <br>
 
         <label for="topic">Колір автомобіля</label>
         <select name="id_color" class="select-auto">
