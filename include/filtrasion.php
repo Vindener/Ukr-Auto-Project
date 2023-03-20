@@ -1,34 +1,25 @@
 <?php
 include ("db_connect.php"); //Підключення до бази даних
-$search = $_POST['search'];
-if($_POST["search"]){
+
     $query_all='';
-        $nm='';
-        $reg_name = $_POST['nameanime'];
-        $studia = $_POST['studia'];
-        $rey = $_POST['rey'];
+        $region = $_POST['region'];
+        $typecar = $_POST['typecar'];
+        $modelcar = $_POST['modelcar'];
 
-        if($anime_name==""){
-            $query_name="Aname IN(SELECT Aname FROM table_anime)";
-        }else {$query_name="Aname IN(".$anime_name.")";}
+        if($region==""){
+            $query_regname="Aname IN(SELECT Aname FROM table_anime)";
+        }else {$query_regname="Aname IN(".$region.")";}
 
-        if($studia==""){
+        if($typecar==""){
             $query_stud="AND studname IN(SELECT Sname FROM table_studio)";
-        }else {$query_stud="AND studname='$studia'";}
+        }else {$query_stud="AND studname='$typecar'";}
 
-        if($rey==""){
-            $query_rey="AND Arating IN(SELECT Arating FROM table_anime)";
-        }else {$query_rey="AND Arating='$rey'";}
+        if($modelcar==""){
+            $query_modelcar="AND Arating IN(SELECT Arating FROM table_anime)";
+        }else {$query_modelcar="AND Arating='$modelcar'";}
 
     $query_all=$query_name.$query_stud.$query_rey;
-	$sel = mysqli_query($linc, "SELECT Aid, Aname, Aseries, Anext_series, Aepisod_duration, Astatus, Arating, Astudio_id, Afoto, table_studio.Sname as studname FROM table_anime LEFT JOIN table_studio ON table_studio.Sid=table_anime.Astudio_id HAVING $query_all");
-    $num_rows=mysqli_num_rows($sel);//Визначення кількості рядків у таблиці
-    //Виведення в циклі записів у таблицю веб-сторінки
-    $row = mysqli_fetch_assoc($sel);
-    mysqli_close($linc);
-}
-else{
-    $sel=mysqli_query($connect, "SELECT *,
+	$sel=mysqli_query($connect, "SELECT *,
     stan_car.name_stan_car as scname,
     color.name_color as ncolor,
     pryvid.name_pryvid as pname, 
@@ -53,10 +44,10 @@ else{
     LEFT JOIN type_car ON type_car.id_type_car = spisok.id_type_car
     LEFT JOIN marka_car ON marka_car.id_car_mark = spisok.id_mark_car
     LEFT JOIN model_car ON model_car.id_model_car = spisok.id_model_car
+    HAVING $query_all
     GROUP BY id_spisok");
     $num_rows=mysqli_num_rows($sel);//Визначення кількості рядків у таблиці
     //Виведення в циклі записів у таблицю веб-сторінки
     $row = mysqli_fetch_assoc($sel);
     mysqli_close($connect);
-}
 ?>

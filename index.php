@@ -159,7 +159,7 @@ function out_options2($array, $selected_id = 0)
         <h3>Фільтр</h3>
         <p>Тут можно знайти потрібне вам авто.</p>
         <section class="filter-block">
-          <form action="filtrasion.php" method="POST">
+          <form action="include/filtrasion.php" method="POST">
             <select name="region" id="">
               <option value="" disabled selected>Виберіть регіон</option>
               <?php echo out_options1($region, 0); ?>
