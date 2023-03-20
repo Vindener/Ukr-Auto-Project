@@ -165,3 +165,11 @@ td{
 select{
     margin-bottom: 8px;
 }
+/* add-auto */
+.galery_container {
+  margin: 40px;
+  min-width: 900px;
+}
+.container_auto{
+    display: flex;
+}

@@ -33,8 +33,6 @@ $sel = mysqli_query($connect, "SELECT *,
      WHERE `id_spisok` = '$id'");
 
 $row = mysqli_fetch_assoc($sel);
-
-mysqli_close($connect);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +46,7 @@ mysqli_close($connect);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="./css/contact.css">
+    <link rel="stylesheet" href="./css/contact.css?<? echo time(); ?>">
     <link rel="stylesheet" href="./css/styles.css?<? echo time(); ?>" />
 </head>
 
@@ -118,53 +116,81 @@ mysqli_close($connect);
         </div>
     </nav>
 
-    <div class="form-container">
-        <h2><?= $row['mcname'] . " " . $row['modcname'] . " " . $row['name_car_modyf'] ?></h2>
-        <h3></h3>
-        <?php
-        if ($row["img"] == '') {
-            $img_path = '../../img/no_image.jpg';
-        } else {
-            $img_path = '../../img/auto//' . $row['img'];
-        }
-        echo '
-                <img src="' . $img_path . '" width="120px" heigth="120px"  >
-            ';
-        ?>
-        <div id="demo" class="carousel slide" data-ride="carousel">
-
-            <!-- Indicators -->
-            <ul class="carousel-indicators">
-                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                <li data-target="#demo" data-slide-to="1"></li>
-                <li data-target="#demo" data-slide-to="2"></li>
-            </ul>
-
-            <!-- The slideshow -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../../img/auto/2.jpg" alt="Los Angeles" width="1200" height="500">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/no_image.jpg" alt="Chicago" width="1100" height="500">
-                </div>
-                <div class="carousel-item">
-                    <img src="../../img/no_image.jpg" alt="New York" width="1100" height="500">
-                </div>
-            </div>
-
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
+    <div class="container_auto">
+        <div class="form-container">
+            <h2><?= $row['mcname'] . " " . $row['modcname'] . " " . $row['name_car_modyf'] ?></h2>
+            <p style="color:green;"><?= $row['tsina'] ?> $</p>
+            <p><?= $row['probih'] ?> тис. км пробіг</p>
         </div>
+
+
+        <div class="galery_container">
+            <h3></h3>
+
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <?php
+                    $in = 0;
+                    $query_img1 = mysqli_query($connect, "SELECT * FROM photo WHERE id_spisok='$id'");
+                    if (mysqli_num_rows($query_img1) > 0) {
+                        $row_img = mysqli_fetch_array($query_img1);
+                        do {
+                            $img_path = $row_img["name_photo"];
+                            $in = $in + 1;
+                            echo '
+                        <li data-target="#demo" data-slide-to="' . $in . '"></li>
+									';
+                        } while ($row_img = mysqli_fetch_array($query_img1));
+                    }
+                    ?>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <?php
+                        if ($row["img"] == '') {
+                            $img_path = '../../img/no_image.jpg';
+                        } else {
+                            $img_path = '../../img/auto//' . $row['img'];
+                        }
+                        echo '
+                <img src="' . $img_path . '"  width="900" height="500"  >
+            ';
+                        ?>
+                    </div>
+                    <?php
+                    $query_img = mysqli_query($connect, "SELECT * FROM photo WHERE id_spisok='$id'");
+                    if (mysqli_num_rows($query_img) > 0) {
+                        $row_img = mysqli_fetch_array($query_img);
+                        do {
+                            $img_path = $row_img["name_photo"];
+                            echo '
+                    <div class="carousel-item">
+							   <img src="' . $img_path . '"  width="900" height="500"/>
+                    </div>
+									';
+                        } while ($row_img = mysqli_fetch_array($query_img));
+                    }
+
+                    ?>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+
     </div>
 
-    <p style="color:green;"><?= $row['tsina'] ?> $</p>
-    <p><?= $row['probih'] ?> тис. км пробіг</p>
 
 
     <div>
