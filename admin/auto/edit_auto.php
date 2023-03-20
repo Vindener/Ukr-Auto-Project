@@ -331,7 +331,7 @@ if ($_SESSION['auth_user'] != "admin") {
         <br>
 
         <label for="topic">Рік випуску</label>
-        <input type="date" id="start" name="vypusk_year" value="2023-01-01" min="2000-01-01" max="2023-12-12" value="<?= $row['vypusk_year'] ?>">
+        <input type="number" id="start" name="vypusk_year" min="1960" max="2023" placeholder="Введіть рік випуску" value="<?= $row['vypusk_year'] ?>">
         </select><br>
 
         <label for="topic">Колір автомобіля</label>

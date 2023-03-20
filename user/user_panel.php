@@ -164,8 +164,8 @@ if ($_SESSION['auth_user'] == "") {
                 <td><a href="..\auto.php?id=' . $row1['id_spisok'] . '">' . $row1['mcname'] . " " . $row1['modcname'] . " " . $row1['name_car_modyf'] . '</a></td>
                 <td>' . $row1['date_prod'] . '</td>
                 <td>' . $row1['tsina'] . ' $</td>
-                <td><a href="pages\views\view_user.php?id=' . $row['id'] . '">Перегляд</td>
-                <td><a href="update.php?id=' . $row['id'] . '">Оновити</td>
+                <td><a href="..\auto.php?id=' . $row1['id_spisok'] . '">Перегляд</td>
+                <td><a href="edit_auto.php?id=' . $row1['id_spisok'] . '">Оновити</td>
         
       </tr>
       ';
