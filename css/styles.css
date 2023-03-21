@@ -162,6 +162,8 @@ td{
 }
 
 /* index */
-select{
+.vvod{
     margin-bottom: 8px;
+    width:100px;
+    height: 25px;
 }

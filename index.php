@@ -228,24 +228,19 @@ function out_options2($array, $selected_id = 0)
             </script>
             <br />
             Введіть ціновий діапазон<br />
-            <select name="" id="">
-              <option value="">від</option>
-            </select>
+            <div style="display:flex">
+            <input type="text" name="tsinavid" class="vvod">
             --
-            <select name="" id="">
-              <option value="">до</option>
-            </select>
-            <br />
+            <input type="text" name="tsinado" class="vvod">
+            </div>
+            
             Введіть рік випуску<br />
-            <select name="" id="">
-              <option value="">від</option>
-            </select>
+            <div style="display:flex">
+            <input type="text" name="yearvid" class="vvod">
             --
-            <select name="" id="">
-              <option value="">до</option>
-            </select>
-            <br />
-            <br />
+            <input type="text" name="yeardo" class="vvod">
+            </div>
+            <br>
             <button name="search" class="filter-button">Розширений пошук</button>
           </form>
         </section>
