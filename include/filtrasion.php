@@ -47,7 +47,7 @@ $search = $_POST['search'];
             }else{$query_vypuskyear="AND spisok.vypusk_year>='$yearvid' AND spisok.vypusk_year<='$yeardo'";}
         }
 
-    echo $query_all=$query_regname.$query_tcname.$query_markcar.$query_modelcar.$query_tsina.$query_vypuskyear;
+    $query_all=$query_regname.$query_tcname.$query_markcar.$query_modelcar.$query_tsina.$query_vypuskyear;
 	$sel=mysqli_query($connect, "SELECT *, spisok.id_region, type_car.id_type_car,
     stan_car.name_stan_car as scname,
     color.name_color as ncolor,
