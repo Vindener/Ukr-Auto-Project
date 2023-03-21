@@ -174,8 +174,9 @@ td{
 }
 
 /* index */
-select{
+.vvod{
     margin-bottom: 8px;
+<<<<<<< HEAD
 }
 /* auto view */
 .galery_container {
@@ -228,4 +229,8 @@ select{
 }
 .bold_text{
     font-weight: bold;
+=======
+    width:100px;
+    height: 25px;
+>>>>>>> filter
 }
