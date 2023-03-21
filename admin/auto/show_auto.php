@@ -30,8 +30,6 @@ if ($_SESSION['auth_user'] != "admin") {
     WHERE `id_spisok` = '$id_spisok'");
   //print_r($auto);
   $auto = mysqli_fetch_assoc($auto);
-
-  mysqli_close($connect);
 }
 ?>
 
@@ -133,6 +131,24 @@ if ($_SESSION['auth_user'] != "admin") {
         <input type="text" name="date_prod" value="<?= $auto['date_prod'] ?>">
         <p>Ціна</p>
         <input type="text" name="tsina" value="<?= $auto['tsina'] ?>">
+        <p>Зображення в масштабі</p>
+        <?php
+        echo '<div style="margin-top:10px">';
+        $query_img = mysqli_query($connect, "SELECT * FROM photo WHERE id_spisok='$id_spisok'");
+        if (mysqli_num_rows($query_img) > 0) {
+          $row_img = mysqli_fetch_array($query_img);
+          do {
+            $img_path = $row_img["name_photo"];
+            echo '
+							   <img src="../../' . $img_path . '" width="240px" heigth="300px"/>
+                 <br>
+
+									';
+          } while ($row_img = mysqli_fetch_array($query_img));
+        }
+        echo '</div>';
+        ?>
+
 
         <br><br>
         <button type="submit">Повернутися на головну</button>

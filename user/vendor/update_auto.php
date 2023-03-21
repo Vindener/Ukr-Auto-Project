@@ -1,6 +1,5 @@
 <?php
-require_once '../../../include/db_connect.php';
-
+require_once '../../include/db_connect.php';
 if (isset($_POST['uchast_v_dtp'])) {
   // значение option1 равно "yes"
   $uchast_v_dtp = '1';
@@ -65,5 +64,5 @@ if (isset($_FILES['my_files'])) {
   $myFiles = $_FILES['my_files'];
   include("update_gallery.php");
 }
-header('Location: ../../admin_panel.php');
+  header('Location: ../user_panel.php');
 ?>

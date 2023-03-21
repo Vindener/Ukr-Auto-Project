@@ -1,41 +1,62 @@
 <?php
 include ("db_connect.php"); //Підключення до бази даних
 $search = $_POST['search'];
-if($_POST["search"]){
     $query_all='';
-        $nm='';
-        $reg_name = $_POST['nameanime'];
-        $studia = $_POST['studia'];
-        $rey = $_POST['rey'];
+        $region = $_POST['region'];
+        $typecar = $_POST['typecar'];
+        $markcar = $_POST['markcar'];
+        $modelcar = $_POST['modelcar'];
+        $tsinavid = $_POST['tsinavid'];
+        $tsinado = $_POST['tsinado'];
+        $yearvid = $_POST['yearvid'];
+        $yeardo = $_POST['yeardo'];
 
-        if($anime_name==""){
-            $query_name="Aname IN(SELECT Aname FROM table_anime)";
-        }else {$query_name="Aname IN(".$anime_name.")";}
+        if($region==""){
+            $query_regname="spisok.id_region IN(SELECT id_region FROM spisok)";
+        }else {$query_regname="spisok.id_region ='$region'";}
 
-        if($studia==""){
-            $query_stud="AND studname IN(SELECT Sname FROM table_studio)";
-        }else {$query_stud="AND studname='$studia'";}
+        if($typecar==""){
+            $query_tcname="AND type_car.id_type_car IN(SELECT id_type_car FROM type_car)";
+        }else {$query_tcname="AND type_car.id_type_car='$typecar'";}
 
-        if($rey==""){
-            $query_rey="AND Arating IN(SELECT Arating FROM table_anime)";
-        }else {$query_rey="AND Arating='$rey'";}
+        if($markcar==""){
+            $query_markcar="AND mcname IN(SELECT name_car_mark FROM marka_car)";
+        }else {$query_markcar="AND mcname='$markcar'";}
 
-    $query_all=$query_name.$query_stud.$query_rey;
-	$sel = mysqli_query($linc, "SELECT Aid, Aname, Aseries, Anext_series, Aepisod_duration, Astatus, Arating, Astudio_id, Afoto, table_studio.Sname as studname FROM table_anime LEFT JOIN table_studio ON table_studio.Sid=table_anime.Astudio_id HAVING $query_all");
-    $num_rows=mysqli_num_rows($sel);//Визначення кількості рядків у таблиці
-    //Виведення в циклі записів у таблицю веб-сторінки
-    $row = mysqli_fetch_assoc($sel);
-    mysqli_close($linc);
-}
-else{
-    $sel=mysqli_query($connect, "SELECT *,
+        if($modelcar==""){
+            $query_modelcar="AND modcname IN(SELECT name_model_car FROM model_car)";
+        }else {$query_modelcar="AND modcname='$modelcar'";}
+
+        if($tsinavid==""){
+            if($tsinado==""){
+                $query_tsina="AND spisok.tsina IN(SELECT tsina FROM spisok)";
+            }else{$query_tsina="AND spisok.tsina<='$tsinado'";}
+        }else{
+            if($tsinado==""){
+                $query_tsina="AND spisok.tsina>='$tsinavid'";
+            }else{$query_tsina="AND spisok.tsina>='$tsinavid' AND spisok.tsina<='$tsinado'";}
+        }
+
+        if($yearvid==""){
+            if($yeardo==""){
+                $query_vypuskyear="AND spisok.vypusk_year IN(SELECT vypusk_year FROM spisok)";
+            }else{$query_vypuskyear="AND spisok.vypusk_year<='$yeardo'";}
+        }else{
+            if($yeardo==""){
+                $query_vypuskyear="AND spisok.vypusk_year>='$yearvid'";
+            }else{$query_vypuskyear="AND spisok.vypusk_year>='$yearvid' AND spisok.vypusk_year<='$yeardo'";}
+        }
+
+    $query_all=$query_regname.$query_tcname.$query_markcar.$query_modelcar.$query_tsina.$query_vypuskyear;
+	$sel=mysqli_query($connect, "SELECT *, spisok.id_region, type_car.id_type_car,
     stan_car.name_stan_car as scname,
     color.name_color as ncolor,
     pryvid.name_pryvid as pname, 
     type_palyva.name_type_palyva as tpname, 
     korobka_peredach.name_korobka_peredach as kpname, 
     type_kuzova.name_type_kuzova as tkname, 
-    user.name as uname, region.name_region as nregion, 
+    user.name as uname, 
+    region.name_region as nregion, 
     city.name_city as ncity,
     type_car.name_type_car as tcname,
     marka_car.name_car_mark as mcname,
@@ -53,10 +74,10 @@ else{
     LEFT JOIN type_car ON type_car.id_type_car = spisok.id_type_car
     LEFT JOIN marka_car ON marka_car.id_car_mark = spisok.id_mark_car
     LEFT JOIN model_car ON model_car.id_model_car = spisok.id_model_car
-    GROUP BY id_spisok");
+    GROUP BY id_spisok
+    HAVING $query_all");
     $num_rows=mysqli_num_rows($sel);//Визначення кількості рядків у таблиці
     //Виведення в циклі записів у таблицю веб-сторінки
     $row = mysqli_fetch_assoc($sel);
     mysqli_close($connect);
-}
 ?>

@@ -114,7 +114,6 @@ else
                 <th>&#10017;</th>
                 <th>&#9998;</th>
                 <th>&#10006;</th>
-                <th>&#128388;</th>
             </tr>
             <?php
                 do{
@@ -146,9 +145,8 @@ else
                     <td>'.$row['tsina'].' $</td>
                     <td><img src="'.$img_path.'" width="44px" heigth="44px" ></td>
                     <td><a href="auto\show_auto.php?id_spisok='.$row['id_spisok'].'">Перегляд</a></td>
-                    <td><a href="auto\edit_auto.php?id_spisok='.$row['id_spisok'].'">Обновити</a></td>
+                    <td><a href="auto\edit_auto.php?id_spisok='.$row['id_spisok'].'">Оновити</a></td>
                     <td><a href="auto\delete_auto.php?id_spisok='.$row['id_spisok'].'" onclick="return ConfirmDelete()">Del</a></td>
-                    <td><a href="models\galeres.php?id_spisok='.$row['id_spisok'].'">Галерея</a></td>
                     </tr>
                     ';
                 }
