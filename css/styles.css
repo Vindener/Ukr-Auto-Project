@@ -141,6 +141,18 @@ td{
     align-items: center;
     padding: 24px;
 }
+.auto_panel_container{
+    margin: auto;
+    width: 80%;
+    align-items: center;
+    padding: 24px;
+}
+.main_image{
+    width:65%;
+     display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 .user_panel_first_container{
     margin: auto;
     display: flex;
@@ -164,4 +176,61 @@ td{
 /* index */
 select{
     margin-bottom: 8px;
+}
+.vvod{
+    margin-bottom: 8px;
+    width:100px;
+    height: 25px;
+}
+/* auto view */
+.galery_container {
+  margin: 40px;
+  min-width: 900px;
+}
+.container_auto{
+    display: flex;
+}
+.text-container{
+    margin: 40px;
+    background: rgba(255, 92, 0, 0.32);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    padding:16px;
+}
+.text-container .price{
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 16px;
+    color:green;
+    text-align: center;
+}
+.text-container .text{
+    margin-left: 18px;
+}
+.container_auto_center{
+    margin: 0px 40px 40px; 
+    background: rgba(255, 92, 0, 0.32);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    padding:16px;
+}
+.auto_about_container{
+    margin: 0px 60px;
+        display: flex;  
+        flex-direction: row;
+    align-items: center;
+}
+.first_block_about{
+    padding-left: 220px;
+}
+.second_block_about{
+    padding-left: 40px;
+}
+.about_text{
+    text-align: center;
+}
+.bold_text{
+    font-weight: bold;
 }
