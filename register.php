@@ -175,7 +175,7 @@ include("./include/header.php"); //Підключення хедера
                     //Додавання запису в базу даних
                     $password = md5($_POST['pass'] . "cargr2gh");
                     mysqli_query($connect, "INSERT INTO `user` (`id_user`, `name`, `lastname`, `middlename`, `telefon`, `email`, `password`, `id_access`) 
-        VALUES (NULL, '" . $_POST["name"] . "', '" . $_POST["lastname"] . "', '" . $_POST["middlename"] . "','" . $_POST["telefon"] . "','" . $_POST["email"] . "','$password','1')");
+        VALUES (NULL, '" . $_POST["name"] . "', '" . $_POST["lastname"] . "', '" . $_POST["middlename"] . "','" . $_POST["telefon"] . "','" . $_POST["email"] . "','$password','2')");
 
                     //Вхід після регістрації
                     $login = $_POST["email"];
@@ -190,33 +190,33 @@ include("./include/header.php"); //Підключення хедера
 
                     if ($row["id_access"] == 2) {
                         $_SESSION['auth_user']  = 'user';
-                        header("Location: ../users/user_panel.php");
+                        header("Location: user/user_panel.php");
                     }
                     if ($row["id_access"] == 1) {
                         $_SESSION['auth_user']  = 'admin';
-                        header("Location: ./admin/admin_panel.php");
+                        header("Location: admin/admin_panel.php");
                     }
 
-                    echo "<meta http-equiv='refresh' content='0'>";
+                    // echo "<meta http-equiv='refresh' content='0'>";
                 }
             }
             ?>
             <form action="" method="post" class="container-login">
                 <label for="name"><b>Ім'я</b></label>
-                <input type="text" placeholder="Ім'я" name="name" />
+                <input type="text" placeholder="Ім'я" name="name" required />
                 <label for="middlename"><b>По батькові</b></label>
-                <input type="text" placeholder="По батькові" name="middlename" />
+                <input type="text" placeholder="По батькові" name="middlename" required />
                 <label for="lastname"><b>Прізвище</b></label>
-                <input type="text" placeholder="Прізвище" name="lastname" />
+                <input type="text" placeholder="Прізвище" name="lastname" required />
 
                 <label for="email"><b>Електронна пошта</b></label>
-                <input type="text" placeholder="Електронна пошта" name="email" />
+                <input type="text" placeholder="Електронна пошта" name="email" required />
 
                 <label for="telefon"><b>Телефон</b></label>
-                <input type="text" placeholder="Телефон" name="telefon" />
+                <input type="text" placeholder="Телефон" name="telefon" required />
 
                 <label for="pass"><b>Пароль</b></label>
-                <input type="password" placeholder="Пароль" name="pass" />
+                <input type="password" placeholder="Пароль" name="pass" required />
                 <hr />
 
                 <button type="submit" class="btn btn-danger button_registr" id="button_registr" name="button_registr">
