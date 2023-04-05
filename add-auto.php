@@ -523,16 +523,18 @@ function out_options11($array, $selected_id = 0)
         </select><br>
 
         <label for="topic">Марка автомобіля</label>
-        <select name="id_mark_car" class="select-auto">
-          <option></option>
-          <?php echo out_options3($markacar, 0); ?>
-        </select><br>
+        <select name="markcar" id="markcar" class="select-auto">
+            <option></option>
+            <?php echo out_options3($markacar, 0); ?>
+            </select>
+            <br />
 
         <label for="topic">Модель автомобіля</label>
-        <select name="id_model_car" class="select-auto">
-          <option></option>
-          <?php echo out_options4($modelcar, 0); ?>
-        </select><br>
+        <select name="modelcar" id="modelcar" class="select-auto">
+              <option></option>
+              <?php echo out_options4($modelcar, 0); ?>
+            </select>
+            <br />
 
         <label for="lname">Назва модифікації</label>
         <input type="text" id="name_car_modyf" name="name_car_modyf" placeholder="Введіть назву модифікації" class="textbox-register">

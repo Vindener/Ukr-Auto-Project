@@ -71,7 +71,6 @@ if ($_SESSION['auth_user'] != "admin") {
     <a href="../marka/index.php">Марка</a>
     <a href="../model/index.php">Модель</a>
     <a href="../color/index.php">Колір</a>
-    <a href="../city/index.php">Місто</a>
 
   </div>
 

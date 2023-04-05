@@ -6,9 +6,11 @@ if ($_SESSION['auth_user'] != "admin") {
   header("Location:../index.php");
 } else {
   include("../../include/db_connect.php");
-  $sel = mysqli_query($connect, "SELECT *
-    FROM user 
-    GROUP BY id_user");
+  $sel = mysqli_query($connect, "SELECT *, 
+  marka_car.name_car_mark as mcname 
+  FROM model_car
+  LEFT JOIN marka_car ON marka_car.id_car_mark = model_car.id_mark_car  
+  GROUP BY id_model_car");
   $num_rows = mysqli_num_rows($sel); //Визначення кількості рядків у таблиці
   //Виведення в циклі записів у таблицю веб-сторінки
   $row = mysqli_fetch_assoc($sel);
@@ -44,6 +46,9 @@ if ($_SESSION['auth_user'] != "admin") {
         <li class="nav-item">
           <a class="nav-link" href="../../index.php">Головна</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="add.php">Додати поле</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -54,19 +59,14 @@ if ($_SESSION['auth_user'] != "admin") {
     <a href="../marka/index.php">Марка</a>
     <a href="../model/index.php" class="active">Модель</a>
     <a href="../color/index.php">Колір</a>
-    <a href="../city/index.php">Місто</a>
   </div>
 
   <div class="spisok-table">
     <table>
       <tr>
         <th width="25px">id</th>
-        <th width="125px">Ім'я</th>
-        <th width="125px">По батькові</th>
-        <th width="70px">Прізвище</th>
-        <th width="75px">Телефон</th>
-        <th width="75px">Пошта</th>
-        <th width="25px">Рівень доступу</th>
+        <th width="125px">Марка авто</th>
+        <th width="125px">Модель</th>
         <th>&#10017;</th>
         <th>&#9998;</th>
         <th>&#10006;</th>
@@ -75,16 +75,12 @@ if ($_SESSION['auth_user'] != "admin") {
       do {
         echo '
               <tr>
-              <td>' . $row['id_user'] . '</td>
-              <td>' . $row['name'] . '</td>
-              <td>' . $row['middlename'] . '</td>
-              <td>' . $row['lastname'] . '</td>
-              <td>' . $row['telefon'] . '</td>
-              <td>' . $row['email'] . '</td>
-              <td>' . $row['id_access'] . '</td>
-              <td><a href="action\show_user.php?id=' . $row['id_user'] . '">Перегляд</a></td>
-              <td><a href="action\edit_user.php?id=' . $row['id_user'] . '">Оновити</a></td>
-              <td><a href="action\vendor\delete_user.php?id=' . $row['id_user'] . '" onclick="return ConfirmDelete()">Del</a></td>
+              <td>' . $row['id_model_car'] . '</td>
+              <td>' . $row['mcname'] . '</td>
+              <td>' . $row['name_model_car'] . '</td>
+              <td><a href="action\show.php?id=' . $row['id_model_car'] . '">Перегляд</a></td>
+              <td><a href="action\edit.php?id=' . $row['id_model_car'] . '">Оновити</a></td>
+              <td><a href="action\vendor\delete.php?id=' . $row['id_model_car'] . '" onclick="return ConfirmDelete()">Del</a></td>
               </tr>
               ';
       } while ($row = mysqli_fetch_assoc($sel));

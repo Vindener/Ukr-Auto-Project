@@ -74,10 +74,9 @@ if ($_SESSION['auth_user'] != "admin") {
   <div class="vertical-menu">
     <a href="../admin_panel.php">Список</a>
     <a href="../users/index.php">Користувачі</a>
-    <a href="../marka/index.php">Марка</a>
+    <a href="../marka/index.php" class="active">Марка</a>
     <a href="../model/index.php">Модель</a>
-    <a href="../color/index.php" class="active">Колір</a>
-    <a href="../city/index.php">Місто</a>
+    <a href="../color/index.php">Колір</a>
   </div>
 
   <div class="spisok-table">
@@ -91,7 +90,7 @@ if ($_SESSION['auth_user'] != "admin") {
             </select>
         <p>Введіть марку</p>
         <input type="text" name="marka" required><br><br>
-        <button type="submit" class="registerbtn" name="create_color">Додати поле</button>
+        <button type="submit" class="registerbtn" name="create_marka">Додати поле</button>
       </form>
 
       <form class="form-auto" action="./index.php" method="post">
