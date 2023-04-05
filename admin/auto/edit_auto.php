@@ -271,20 +271,12 @@ if ($_SESSION['auth_user'] != "admin") {
   </nav>
 
   <div class="vertical-menu show_auto">
-    <a href="#" class="active">Список</a>
-    <a href="#">Користувачі</a>
-    <a href="#">Коробка передач</a>
-    <a href="#">Марка</a>
-    <a href="#">Модель</a>
-    <a href="#">Колір</a>
-    <a href="#">Регіон</a>
-    <a href="#">Місто</a>
-    <a href="#">Привід</a>
-    <a href="#">Стан авто</a>
-    <a href="#">Тип кузова</a>
-    <a href="#">Тип палива</a>
-    <a href="#">Тип транспорту</a>
-
+    <a href="../admin_panel.php" class="active">Список</a>
+    <a href="../users/index.php">Користувачі</a>
+    <a href="../marka/index.php">Марка</a>
+    <a href="../model/index.php">Модель</a>
+    <a href="../color/index.php">Колір</a>
+    <a href="../city/index.php">Місто</a>
   </div>
 
 
@@ -452,7 +444,7 @@ if ($_SESSION['auth_user'] != "admin") {
         <button type="submit" class="user_button" name="delete_photo">Видалити галерею зображень</button>
       </form>
       <br>
-      
+
       <form class="form-auto" action="../admin_panel.php" method="post">
         <button type="submit">Повернутися на головну</button>
       </form>

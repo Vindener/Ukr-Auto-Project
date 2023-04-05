@@ -499,10 +499,15 @@ function out_options11($array, $selected_id = 0)
           include("include/upload_gallery.php");
         }
 
-        echo "<meta http-equiv='refresh' content='0'>";
+        echo '<script>
+                window.location.href = \'user_redirect.php\';
+              </script>
+        ';
+        // echo "<meta http-equiv='refresh' content='0'>";
       }
     }
     ?>
+    
 
     <?php
     if ($_SESSION['id'] != "") :
@@ -554,7 +559,7 @@ function out_options11($array, $selected_id = 0)
           <label for="uchast_v_dtp" id="uchast_v_dtp" name="uchast_v_dtp">Участь в ДТП</label>
         </div><br>
 
-        <label for="lname">Пробіг автомобіля</label>
+        <label for="lname">Пробіг автомобіля(тис. км.)</label>
         <input type="number" id="probih" name="probih" placeholder="Введіть пробіг автомобіля" class="textbox-register">
         <br>
 
