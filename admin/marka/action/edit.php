@@ -8,11 +8,32 @@ if ($_SESSION['auth_user'] != "admin") {
   include("../../../include/db_connect.php");
   $id = $_GET['id'];
 
-  $auto = mysqli_query($connect, "SELECT *
-    FROM color 
-    WHERE `id_color` = '$id'");
+  $auto = mysqli_query($connect, "SELECT *, marka_car.id_type_car,
+    type_car.name_type_car as tcname 
+    FROM marka_car
+    LEFT JOIN type_car ON type_car.id_type_car = marka_car.id_type_car 
+    WHERE `id_car_mark` = '$id'");
   //print_r($auto);
   $auto = mysqli_fetch_assoc($auto);
+
+  $dbh = new PDO('mysql:dbname=ukr_auto;host=localhost', 'root', '');
+    $sth = $dbh->prepare("SELECT * FROM `type_car` ORDER BY `name_type_car`");
+    $sth->execute();
+    $typecar = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+    function out_options($array, $selected_id = 0)
+    {
+    $out = '';
+    foreach ($array as $i => $row) {
+        $out .= '<option value="' . $row['id_type_car'] . '"';
+        if ($row['id_type_car'] == $selected_id) {
+        $out .= ' selected';
+        }
+        $out .= '>';
+        $out .= $row['name_type_car'] . '</option>';
+    }
+    return $out;
+    }
 }
 ?>
 
@@ -60,13 +81,26 @@ if ($_SESSION['auth_user'] != "admin") {
 
   <div class="spisok-table">
     <div class="admin-form">
-      <form class="" action="../index.php" method="post">
-        <input type="hidden" name="id_color " value="<?= $auto['id_color'] ?>">
-        <p>Табличний номер кольору</p>
-        <input type="text" name="id_color " value="<?= $auto['id_color'] ?>" disabled>
-        <p>Колір</p>
-        <input type="text" name="name_color" value="<?= $auto['name_color'] ?>">
+      <form class="" action="vendor/update.php" method="post">
+        <input type="hidden" name="id_car_mark" value="<?= $auto['id_car_mark'] ?>">
+        <p>Табличний номер марки</p>
+        <input type="text" name="id_car_mark " value="<?= $auto['id_car_mark'] ?>" disabled>
+        <p>Тип авто</p>
+        <input type="text" name="id_type_car" value="<?= $auto['id_type_car'] ?>" readonly><br>
+        <input type="text" name="type_car" value="<?= $auto['tcname'] ?>" readonly><br>
+
+            <select name="typecar" id="typecar">
+                <option value="" disabled selected>Виберіть тип транспорту</option>
+                <?php echo out_options($typecar, 0); ?>
+            </select>
+        
+        <p>Марка авто</p>
+        <input type="text" name="name_car_mark" value="<?= $auto['name_car_mark'] ?>">
         <br><br>
+        <button type="submit" class="registerbtn" name="update_auto">Оновити інформацію</button>
+      </form>
+
+      <form class="form-auto" action="../index.php" method="post">
         <button type="submit">Повернутися на головну</button>
       </form>
     </div>

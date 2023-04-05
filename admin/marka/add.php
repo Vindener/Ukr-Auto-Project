@@ -14,8 +14,29 @@ if ($_SESSION['auth_user'] != "admin") {
   $num_rows = mysqli_num_rows($sel); //Визначення кількості рядків у таблиці
   //Виведення в циклі записів у таблицю веб-сторінки
   $row = mysqli_fetch_assoc($sel);
-  mysqli_close($connect);
+
+    $dbh = new PDO('mysql:dbname=ukr_auto;host=localhost', 'root', '');
+    $sth = $dbh->prepare("SELECT * FROM `type_car` ORDER BY `name_type_car`");
+    $sth->execute();
+    $typecar = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+    function out_options($array, $selected_id = 0)
+    {
+    $out = '';
+    foreach ($array as $i => $row) {
+        $out .= '<option value="' . $row['id_type_car'] . '"';
+        if ($row['id_type_car'] == $selected_id) {
+        $out .= ' selected';
+        }
+        $out .= '>';
+        $out .= $row['name_type_car'] . '</option>';
+    }
+    return $out;
+    }
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -46,59 +67,39 @@ if ($_SESSION['auth_user'] != "admin") {
         <li class="nav-item">
           <a class="nav-link" href="../../index.php">Головна</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="add.php">Додати поле</a>
-        </li>
       </ul>
     </div>
   </nav>
 
   <div class="vertical-menu">
     <a href="../admin_panel.php">Список</a>
-    <a href="../users/index.php" >Користувачі</a>
-    <a href="../marka/index.php" class="active">Марка</a>
+    <a href="../users/index.php">Користувачі</a>
+    <a href="../marka/index.php">Марка</a>
     <a href="../model/index.php">Модель</a>
-    <a href="../color/index.php">Колір</a>
+    <a href="../color/index.php" class="active">Колір</a>
     <a href="../city/index.php">Місто</a>
   </div>
 
   <div class="spisok-table">
-    <table>
-      <tr>
-        <th width="25px">id</th>
-        <th width="125px">Тип авто</th>
-        <th width="125px">Назва марки</th>
-        <th>&#10017;</th>
-        <th>&#9998;</th>
-        <th>&#10006;</th>
-      </tr>
-      <?php
-      do {
-        echo '
-              <tr>
-              <td>' . $row['id_car_mark'] . '</td>
-              <td>' . $row['tcname'] . '</td>
-              <td>' . $row['name_car_mark'] . '</td>
-              <td><a href="action\show.php?id=' . $row['id_car_mark'] . '">Перегляд</a></td>
-              <td><a href="action\edit.php?id=' . $row['id_car_mark'] . '">Оновити</a></td>
-              <td><a href="action\vendor\delete.php?id=' . $row['id_car_mark'] . '" onclick="return ConfirmDelete()">Del</a></td>
-              </tr>
-              ';
-      } while ($row = mysqli_fetch_assoc($sel));
-      ?>
-    </table>
+    <div class="admin-form">
+      <form class="" method="post" action="action/vendor/create.php">
+
+        <p>Оберіть тип авто</p>
+        <select name="typecar" id="typecar">
+              <option value="" disabled selected>Виберіть тип транспорту</option>
+              <?php echo out_options($typecar, 0); ?>
+            </select>
+        <p>Введіть марку</p>
+        <input type="text" name="marka" required><br><br>
+        <button type="submit" class="registerbtn" name="create_color">Додати поле</button>
+      </form>
+
+      <form class="form-auto" action="./index.php" method="post">
+        <button type="submit">Повернутися до кольорів</button>
+      </form>
+    </div>
   </div>
 
-  <!-- Видалення з бази даних -->
-  <script>
-    function ConfirmDelete() {
-      if (confirm('Ця дія приведе до видалення поля з бази даних. Ви впевнені що хочете це зробити?')) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  </script>
 </body>
 
 </html>
